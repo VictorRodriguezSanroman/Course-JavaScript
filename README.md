@@ -1,2 +1,2 @@
 # Course-JavaScript
-Udemy course from 0 in Spanish
+Curso de JavaScript sacado de Udemy para iniciarme en este lenguaje
