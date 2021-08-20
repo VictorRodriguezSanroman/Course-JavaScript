@@ -86,7 +86,7 @@ console.log (persona);//El cambio se mantendrá fuera de la función
 
 /******* MÉTODOS ***********/
 
-let persona ={//Objeto
+/* let persona ={//Objeto
     nombre: 'Víctor',
     edad: 29,
     sueldo: 1200,
@@ -105,3 +105,86 @@ let total = persona.metodoPrueba(300);
 console.log (`${persona.nombre} cobraba ${persona.sueldo} y ahora cobra ${total} €`);
 persona.cambiarEdad(3);
 console.log (`${persona.nombre} tiene ${persona.edad} años`);
+ */
+
+/****** OBJETO STRING *********/
+
+/* let nombre = 'Víctor Rodríguez';
+let clave = '12345abcd';
+
+console.log(nombre.length);//Nos muestra el numero 
+console.log(nombre.toLocaleUpperCase());//Convierte todo a mayúsculas
+console.log(nombre.toLowerCase());//Convierte todo a minúsculas
+
+console.log (clave.includes('abc'));//Devuelve true si aparece en la cadena el texto facilitado (se puede poner un indice)
+ */
+
+/****** DESTRUCTURACIÓN DE OBJETOS *********/
+//Sirve para extraer información
+/* const respuesta = {
+    codigo: 2000,
+    data: {
+        persona:{
+            nombre: 'Víctor',
+            direccion: {
+                ciudad: 'Madrid',
+                pais: 'España'
+            }
+        }
+    }
+}
+
+let {data : {persona : { nombre : nom //alias}}} = respuesta;
+
+console.log (nom); */
+
+//Ejemplo 2, dentro de una función
+
+const getPersonaDatos = () => {
+    const respuesta = [
+        {
+        codigo: 100,
+        data: {
+            persona:{
+                nombre: 'Víctor',
+                direccion: {
+                    ciudad: 'Madrid',
+                    pais: 'España'
+                    }
+                }
+            }
+        },
+        {
+            codigo: 200,
+            data: {
+                persona:{
+                    nombre: 'Susana',
+                    direccion: {
+                        ciudad: 'Lisboa',
+                        pais: 'Portugal'
+                        }
+                    }
+                }
+            },
+            {
+                codigo: 300,
+                data: {
+                    persona:{
+                        nombre: 'Cleo',
+                        direccion: {
+                            ciudad: 'Paris',
+                            pais: 'Francia'
+                            }
+                        }
+                    }
+                }
+    ]
+    return respuesta;
+}
+
+let {data : {persona : { nombre : nom }}} = getPersonaDatos()[0];//Con la destructuracion sacamos la información que nos interesa
+console.log ( nom);
+for (const {codigo: status, data : {persona : { nombre : nom, direccion :{ ciudad }}}} of getPersonaDatos()){
+    console.log(`${nom} vive en ${ciudad}`);
+};
+
