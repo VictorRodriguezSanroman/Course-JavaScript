@@ -117,40 +117,6 @@ request.onreadystatechange = () => {
 request.open('GET', 'https://jsonplaceholder.typicode.com/users');
 request.send();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // EJEMPLO DEL USO DE PROMESAS
 // Ejemplo 1
 /* let promesa = new Promise((resolve, reject) => {
@@ -187,5 +153,3 @@ miPromesa2.then(response => {
 }).catch(err => {
     console.log(err);
 }) */
-
-
