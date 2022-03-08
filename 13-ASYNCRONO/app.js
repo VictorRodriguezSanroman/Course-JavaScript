@@ -47,7 +47,7 @@ getUsuarios(); */
 
 // DE CALLBACKS A PROMESAS
 
-const getUsuariosIDs = new Promise((resolve, reject) => {
+/* const getUsuariosIDs = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve([101, 102, 103, 104, 105]);
     }, 2000);
@@ -72,7 +72,7 @@ const getPermisos = id => {
             resolve(permisos);
         },2000, id)
     })
-}
+} */
 
 
 // LLamada a las promesas
@@ -93,7 +93,7 @@ const getPermisos = id => {
 
 
 // Función con Async/Await
-async function getUsuariosAW(){
+/* async function getUsuariosAW(){
     const IDs = await getUsuariosIDs
     console.log(IDs);
     const usuario = await getUsuarios( IDs[3]); //await solo cuando es asincrona la función
@@ -102,7 +102,54 @@ async function getUsuariosAW(){
     console.log(permisos);
 
 }
-getUsuariosAW();//Llamamos a la función
+getUsuariosAW(); *///Llamamos a la función
+
+// Ejemplo de una llamada AJAX con HTML Request
+const request = new XMLHttpRequest();
+
+request.onreadystatechange = () => {
+    if(request.readyState == 4 && request.status == 200){
+        const datos = JSON.parse(request.responseText);
+        console.log(datos);
+    }
+}
+
+request.open('GET', 'https://jsonplaceholder.typicode.com/users');
+request.send();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // EJEMPLO DEL USO DE PROMESAS
 // Ejemplo 1
@@ -140,3 +187,5 @@ miPromesa2.then(response => {
 }).catch(err => {
     console.log(err);
 }) */
+
+
