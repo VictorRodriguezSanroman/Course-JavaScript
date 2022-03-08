@@ -21,7 +21,7 @@ const primero = () => {
 // Aunque en ese orden con la función setTimeout podemos establecer el tiempo en el que llamemos a esa función
 primero(); */
 
-const getUsuarios = () => {
+/* const getUsuarios = () => {
     setTimeout(() => {//Callbacks
         const userIDs = [101, 102, 103, 104, 105];
         console.log(userIDs);
@@ -43,4 +43,100 @@ const getUsuarios = () => {
     },1500);
 }
 
-getUsuarios();
+getUsuarios(); */
+
+// DE CALLBACKS A PROMESAS
+
+const getUsuariosIDs = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([101, 102, 103, 104, 105]);
+    }, 2000);
+});
+
+const getUsuarios = userID => {
+    return new Promise((resolve, reject) => {
+        setTimeout((id) => {
+            const usuario = {
+                email: 'victor@gmail.com',
+                nombre: 'Víctor'
+            }
+            resolve(`${id} - ${usuario.email} - ${usuario.nombre}`);
+        },2000, userID);
+    })
+}
+
+const getPermisos = id => {
+    return new Promise((resolve, reject) => {
+        setTimeout((id) =>{
+            const permisos = ['admin','creador'];
+            resolve(permisos);
+        },2000, id)
+    })
+}
+
+
+// LLamada a las promesas
+/* getUsuariosIDs.then(IDs => {
+    console.log(IDs);
+    return getUsuarios(IDs[3]);
+})
+.then((usuario) => {
+    console.log(usuario);
+    return getPermisos(usuario.id);
+})
+.then((permisos) => {
+    console.log(permisos);
+})
+.catch(()=>{
+    console.log('Error');
+}) */
+
+
+// Función con Async/Await
+async function getUsuariosAW(){
+    const IDs = await getUsuariosIDs
+    console.log(IDs);
+    const usuario = await getUsuarios( IDs[3]); //await solo cuando es asincrona la función
+    console.log(usuario);
+    const permisos = await getPermisos(usuario.id);
+    console.log(permisos);
+
+}
+getUsuariosAW();//Llamamos a la función
+
+// EJEMPLO DEL USO DE PROMESAS
+// Ejemplo 1
+/* let promesa = new Promise((resolve, reject) => {
+    if(true){// si la promesa se ejecuta correctamente
+        resolve('La operación fue un exito');
+    }else{
+        reject('Hubo un error');
+    }
+})
+
+promesa.then( response => {
+    console.log('Response: ' + response);
+}).catch (error => {
+    console.log(error);
+});
+
+//ejemplo 2
+let miPromesa = Promise.resolve('Comida');//Otra forma de declararlo
+miPromesa.then(resp => console.log(resp));
+
+// Ejemplo 3
+var miPromesa2 = new Promise(function(resolve, reject) {//Se puede hacer mediante funciones de flecha o normales
+    if(true){
+        setTimeout(() => resolve(4),2000);
+    }else{
+        reject('Error');
+    }
+    
+})
+
+miPromesa2.then(response => {
+    response += 5;
+    console.log(response);
+}).catch(err => {
+    console.log(err);
+}) */
